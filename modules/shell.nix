@@ -64,7 +64,7 @@
       enableFishIntegration = config.programs.fish.enable;
       enableTransience = config.programs.fish.enable;
       settings = {
-                add_newline = false;
+                add_newline = true;
         command_timeout = 1000;
         nix_shell.symbol = "❄️";
         nix_shell.format = "[$symbol$state]($style)";
