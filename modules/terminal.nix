@@ -11,15 +11,8 @@
           --run 'exec ${nixgl.nixGLIntel}/bin/nixGLIntel "${pkgs.kitty}/bin/.kitty-wrapped" "$@"'
       '';
     };
-    themeFile = "Catppuccin-Latte";
-    autoThemeFiles = {
-      light = "Catppuccin-Latte";
-      dark = "Catppuccin-Mocha";
-      noPreference = "Catppuccin-Latte";
-    };
     settings = {
-      font_family = "JetBrains Mono";
-      font_weight = "medium";
+      font_family = "JetBrains Mono:style=medium";
       font_size = 13;
       window_padding_width = 12;
       background_opacity = 0.99;
