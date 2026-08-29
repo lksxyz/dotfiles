@@ -1,18 +1,18 @@
-{ config, pkgs, php72, ... }:
+{ config, pkgs, php72, pkgsUnstable, ... }:
 
 {
   home.username = "lukisxyz";
   home.homeDirectory = "/home/lukisxyz";
   home.stateVersion = "26.05";
-
   home.packages = with pkgs; [
     neovim
     nodejs_22
-    bun
+    pkgsUnstable.bun
     zellij
+    ghostty
     php72
+    lilex
   ];
-
   programs.home-manager.enable = true;
 
   programs.fish = {
