@@ -35,11 +35,6 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
-                if set -q USER
-          set fish_greeting "selamat datang, $USER"
-        else
-          set fish_greeting "selamat datang"
-        end
         if not set -q ZELLIJ
           exec zellij
         end
@@ -64,7 +59,7 @@
       enableFishIntegration = config.programs.fish.enable;
       enableTransience = config.programs.fish.enable;
       settings = {
-                add_newline = true;
+        add_newline = true;
         command_timeout = 1000;
         nix_shell.symbol = "❄️";
         nix_shell.format = "[$symbol$state]($style)";
