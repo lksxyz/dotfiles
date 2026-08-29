@@ -35,7 +35,11 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
-        set fish_greeting
+                if set -q USER
+          set fish_greeting "selamat datang, $USER"
+        else
+          set fish_greeting "selamat datang"
+        end
         if not set -q ZELLIJ
           exec zellij
         end
