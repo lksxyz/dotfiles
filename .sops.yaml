@@ -3,3 +3,5 @@ keys:
 creation_rules:
   - path_regex: secrets/.*\.json$
     age: [*age_lukisxyz]
+  - path_regex: secrets/.*\.template$
+    age: [*age_lukisxyz]

@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,20 +15,34 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, phps, nixgl, sops-nix, ... }:
-  let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    pkgsUnstable = nixpkgs-unstable.legacyPackages.${system};
-  in {
-    homeConfigurations."lukisxyz" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {
-        php72 = phps.packages.${system}.php72;
-        nixgl = nixgl.packages.${system};
-        inherit pkgsUnstable;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      phps,
+      nixgl,
+      sops-nix,
+      ...
+    }:
+    let
+      mkHome =
+        system: username:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = {
+            php72 = phps.packages.${system}.php72;
+            nixgl = nixgl.packages.${system};
+          };
+          modules = [
+            sops-nix.homeManagerModules.sops
+            ./host/${username}/home.nix
+          ];
+        };
+    in
+    {
+      homeConfigurations = {
+        lukisxyz = mkHome "x86_64-linux" "lukisxyz";
       };
-      modules = [ sops-nix.homeManagerModules.sops ./home.nix ];
     };
-  };
 }
