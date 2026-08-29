@@ -81,6 +81,8 @@ in
       window_padding_width = 12;
       background_opacity = 0.99;
       shell = "${pkgs.fish}/bin/fish";
+      linux_display_server = "x11";
+      confirm_os_window_close = 0;
     };
   };
 
