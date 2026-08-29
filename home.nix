@@ -10,7 +10,6 @@
     nodejs_22
     bun
     zellij
-    ghostty
     php72
   ];
 
