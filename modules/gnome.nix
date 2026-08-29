@@ -18,7 +18,7 @@
       color-scheme = "prefer-dark";
       gtk-theme = "catppuccin-mocha";
       icon-theme = "Papirus";
-      monospace-font-name = "Lilex 12";
+      monospace-font-name = "JetBrains Mono 12";
     };
     "org/gnome/desktop/default-applications/terminal" = {
       exec = "kitty";
