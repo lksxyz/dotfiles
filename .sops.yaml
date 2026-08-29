@@ -1,0 +1,5 @@
+keys:
+  - &age_lukisxyz age1nq9kknw89jal62k2h20elscgj9cvl8mcn538y6c32nr7g7zmgyuslgxv66
+creation_rules:
+  - path_regex: secrets/.*\.json$
+    age: [*age_lukisxyz]
