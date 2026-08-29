@@ -15,8 +15,8 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-light";
-      gtk-theme = "catppuccin-latte";
+      color-scheme = "prefer-dark";
+      gtk-theme = "catppuccin-mocha";
       icon-theme = "Papirus";
       monospace-font-name = "Lilex 12";
     };

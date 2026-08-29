@@ -8,6 +8,7 @@
   imports = [
     ../../modules/apps.nix
     ../../modules/editors.nix
+    ../../modules/git.nix
     ../../modules/gnome.nix
     ../../modules/omp.nix
     ../../modules/shell.nix

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,30 +20,34 @@
     {
       self,
       nixpkgs,
+      flake-parts,
       home-manager,
       phps,
       nixgl,
       sops-nix,
       ...
-    }:
-    let
-      mkHome =
-        system: username:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = {
-            php72 = phps.packages.${system}.php72;
-            nixgl = nixgl.packages.${system};
-          };
-          modules = [
-            sops-nix.homeManagerModules.sops
-            ./host/${username}/home.nix
-          ];
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+
+      imports = [ ./nix/cli.nix ];
+
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt;
         };
-    in
-    {
-      homeConfigurations = {
-        lukisxyz = mkHome "x86_64-linux" "lukisxyz";
+
+      flake.homeConfigurations.lukisxyz = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {
+          php72 = phps.packages.x86_64-linux.php72;
+          nixgl = nixgl.packages.x86_64-linux;
+        };
+        modules = [
+          sops-nix.homeManagerModules.sops
+          ./host/lukisxyz/home.nix
+        ];
       };
     };
 }
