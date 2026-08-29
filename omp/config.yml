@@ -1,0 +1,20 @@
+providers:
+  webSearchOrder:
+    []
+setupVersion: 2
+modelRoles:
+  default: commandcode/deepseek/deepseek-v4-flash
+  smol: commandcode/google/gemini-3.5-flash-lite
+  slow: commandcode/deepseek/deepseek-v4-pro
+startup:
+  quiet: true
+theme:
+  dark: dark-catppuccin
+  light: light-catppuccin
+symbolPreset: unicode
+composer:
+  shape: borderless
+statusLine:
+  preset: ascii
+  separator: none
+  contextLine: embedded
