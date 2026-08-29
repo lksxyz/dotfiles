@@ -36,6 +36,9 @@
       enable = true;
       interactiveShellInit = ''
         set fish_greeting
+        if not set -q ZELLIJ
+          exec zellij
+        end
       '';
     };
 
