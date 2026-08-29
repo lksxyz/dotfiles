@@ -76,6 +76,7 @@ in
     };
     settings = {
       font_family = "Lilex";
+      font_weight = "medium";
       font_size = 13;
       window_padding_width = 12;
       background_opacity = 0.99;
