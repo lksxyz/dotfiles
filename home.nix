@@ -33,7 +33,7 @@ in
     nodejs_22
     zellij
     php72
-    lilex
+    jetbrains-mono
     omp
   ] ++ [
     bun-latest
@@ -75,7 +75,7 @@ in
       noPreference = "Catppuccin-Latte";
     };
     settings = {
-      font_family = "Lilex";
+      font_family = "JetBrains Mono";
       font_weight = "medium";
       font_size = 13;
       window_padding_width = 12;
