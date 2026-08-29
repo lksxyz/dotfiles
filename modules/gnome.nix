@@ -2,14 +2,12 @@
 {
   home.packages = with pkgs; [
     gnomeExtensions.blur-my-shell
-    gnomeExtensions.rounded-window-corners
   ];
 
   programs.gnome-shell = {
     enable = true;
     extensions = [
       { package = pkgs.gnomeExtensions.blur-my-shell; }
-      { package = pkgs.gnomeExtensions.rounded-window-corners; }
     ];
   };
 
