@@ -20,6 +20,11 @@
       linux_display_server = "x11";
       confirm_os_window_close = 0;
     };
+    autoThemeFiles = {
+      light = "Catppuccin-Latte";
+      dark = "Catppuccin-Mocha";
+      noPreference = "Catppuccin-Latte";
+    };
   };
 
   home.packages = [
