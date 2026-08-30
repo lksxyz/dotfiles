@@ -10,6 +10,7 @@
     };
     den.url = "github:denful/den";
     import-tree.url = "github:denful/import-tree";
+    nixvim.url = "github:nix-community/nixvim";
     phps.url = "github:fossar/nix-phps";
     nixgl.url = "github:nix-community/nixGL";
     sops-nix = {

@@ -6,6 +6,7 @@
     den.aspects.editors
     den.aspects.git
     den.aspects.gnome
+    den.aspects.nixvim
     den.aspects.omp
     den.aspects.shell
     den.aspects.terminal
