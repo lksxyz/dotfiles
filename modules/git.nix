@@ -3,7 +3,7 @@
   den.aspects.git.homeManager =
     { pkgs, ... }:
     {
-      home.packages = [ pkgs.git-filter-repo ];
+      home.packages = [ pkgs.git-filter-repo pkgs.lazygit ];
 
       programs = {
         # git tools
