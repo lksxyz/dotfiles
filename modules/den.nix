@@ -14,6 +14,9 @@
   den.default = {
     homeManager.home.stateVersion = "26.05";
 
+    # Install the `home-manager` CLI (needed by `universe rebuild`).
+    homeManager.programs.home-manager.enable = true;
+
     includes = [
       den.batteries.define-user
       den.batteries.inputs'
