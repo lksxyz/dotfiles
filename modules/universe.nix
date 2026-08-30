@@ -1,4 +1,5 @@
 {
+  systems = [ "x86_64-linux" ];
   perSystem =
     { pkgs, ... }:
     let
@@ -62,6 +63,7 @@
       '';
     in
     {
+      formatter = pkgs.nixfmt;
       packages.universe = universe // {
         meta.description = "universe CLI: rebuild & manage services";
       };

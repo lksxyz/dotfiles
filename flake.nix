@@ -8,6 +8,8 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    den.url = "github:denful/den";
+    import-tree.url = "github:denful/import-tree";
     phps.url = "github:fossar/nix-phps";
     nixgl.url = "github:nix-community/nixGL";
     sops-nix = {
@@ -16,38 +18,5 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      flake-parts,
-      home-manager,
-      phps,
-      nixgl,
-      sops-nix,
-      ...
-    }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-
-      imports = [ ./nix/cli.nix ];
-
-      perSystem =
-        { pkgs, ... }:
-        {
-          formatter = pkgs.nixfmt;
-        };
-
-      flake.homeConfigurations.lukisxyz = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          php72 = phps.packages.x86_64-linux.php72;
-          nixgl = nixgl.packages.x86_64-linux;
-        };
-        modules = [
-          sops-nix.homeManagerModules.sops
-          ./host/lukisxyz/home.nix
-        ];
-      };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
