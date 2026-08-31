@@ -51,10 +51,6 @@
           name = "todo-comments.nvim";
         }
         {
-          pkg = vimPlugins.tokyonight-nvim;
-          name = "tokyonight.nvim";
-        }
-        {
           pkg = vimPlugins.trouble-nvim;
           name = "trouble.nvim";
         }
@@ -280,9 +276,10 @@
           };
         };
 
-        # Read the host GNOME color-scheme (same source gnome.nix sets to
-        # "prefer-dark") and drive vim.o.background; catppuccin flavour
-        # "auto" follows it.
+        # Read the host GNOME color-scheme (same source gnome.nix sets) and
+        # drive vim.o.background; catppuccin "auto" follows it. LazyVim's
+        # own startup picks a default colorscheme, so also re-apply once
+        # after the lazy loader settles (VeryLazy).
         extraConfigLua = ''
           local ok, handle = pcall(io.popen, "gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null")
           if ok and handle then
@@ -294,6 +291,16 @@
               vim.o.background = "light"
             end
           end
+
+          local function apply_catppuccin()
+            vim.cmd.colorscheme("catppuccin")
+          end
+          apply_catppuccin()
+          vim.api.nvim_create_autocmd("User", {
+            pattern = "VeryLazy",
+            once = true,
+            callback = apply_catppuccin,
+          })
         '';
 
         # ── Reproducible LSP servers (no mason runtime installs) ─────────
