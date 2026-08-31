@@ -1,7 +1,6 @@
 {
   inputs,
   den,
-  lib,
   ...
 }:
 {
@@ -17,9 +16,9 @@
     # Install the `home-manager` CLI (needed by `universe rebuild`).
     homeManager.programs.home-manager.enable = true;
 
-    includes = [
-      den.batteries.define-user
-      den.batteries.inputs'
-    ];
+    # No `den.batteries.inputs'`: aspects use plain flake-parts `inputs`, and
+    # phps/nixgl expose `packages.${system}` (not `legacyPackages`), so
+    # system-specialized inputs would not simplify any access path here.
+    includes = [ den.batteries.define-user ];
   };
 }

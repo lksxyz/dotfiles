@@ -15,6 +15,7 @@ jobs:
         with:
           extra-conf: "experimental-features = nix-command flakes"
       - uses: DeterminateSystems/magic-nix-cache-action@v9
+      - run: nix fmt . -- --check
       - uses: DeterminateSystems/flake-checker-action@v12
       - run: nix flake check .
       - run: nix build .#homeConfigurations.lukisxyz.activationPackage

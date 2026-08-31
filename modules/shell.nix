@@ -79,10 +79,11 @@
           enableFishIntegration = config.programs.fish.enable;
         };
 
-        # Ctrl+R history search UI (atuin alternative)
+        # fzf stays installed; atuin owns the Ctrl+R binding (fzf.fish also
+        # binds Ctrl+R, and the winner would depend on config order).
         fzf = {
           enable = true;
-          enableFishIntegration = config.programs.fish.enable;
+          enableFishIntegration = false;
         };
       };
     };

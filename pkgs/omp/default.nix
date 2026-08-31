@@ -1,10 +1,10 @@
 {
-  stdenv,
+  stdenvNoCC,
   fetchurl,
   lib,
 }:
 
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation rec {
   pname = "omp";
   version = "18.0.10";
 

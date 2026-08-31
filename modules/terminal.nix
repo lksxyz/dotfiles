@@ -36,14 +36,5 @@
         };
       };
 
-      home.packages = [
-        (pkgs.bun.overrideAttrs (old: rec {
-          version = "1.4.0";
-          src = pkgs.fetchurl {
-            url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64.zip";
-            sha256 = "0lp45zljagwcv1l2jv7mi3a1j6hsrsr838m0mikvbj1sp1gzn0rd";
-          };
-        }))
-      ];
     };
 }

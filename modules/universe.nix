@@ -70,6 +70,7 @@
       apps.universe = {
         type = "app";
         program = "${universe}/bin/universe";
+        meta.description = "universe CLI: rebuild & manage services";
       };
     };
 }

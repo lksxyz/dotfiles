@@ -1,9 +1,11 @@
 { ... }:
 let
-  wallpaper = pkgs: pkgs.runCommand "wallpaper" { } ''
-    mkdir -p $out
-    cp ${../wallpapers/Fedora_42_default_wallpaper.png} $out/wallpaper.png
-  '';
+  wallpaper =
+    pkgs:
+    pkgs.runCommand "wallpaper" { } ''
+      mkdir -p $out
+      cp ${../wallpapers/Fedora_42_default_wallpaper.png} $out/wallpaper.png
+    '';
 in
 {
   den.aspects.gnome.homeManager =

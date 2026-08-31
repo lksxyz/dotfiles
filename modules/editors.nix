@@ -1,10 +1,7 @@
-{
-  inputs,
-  ...
-}:
+{ ... }:
 {
   den.aspects.editors.homeManager =
-    { config, lib, pkgs, ... }:
+    { config, pkgs, ... }:
     let
       inherit (config.programs.nixvim.plugins.treesitter.package) builtGrammars;
       inherit (pkgs) vimPlugins;
@@ -13,36 +10,114 @@
       # them as existing local plugins (dev.path) instead of git-cloning.
       # `name` must match the plugin name lazy derives from LazyVim's spec key.
       lazyvimCore = [
-        { pkg = vimPlugins.LazyVim; name = "LazyVim"; }
-        { pkg = vimPlugins.bufferline-nvim; name = "bufferline.nvim"; }
-        { pkg = vimPlugins.flash-nvim; name = "flash.nvim"; }
-        { pkg = vimPlugins.gitsigns-nvim; name = "gitsigns.nvim"; }
-        { pkg = vimPlugins.grug-far-nvim; name = "grug-far.nvim"; }
-        { pkg = vimPlugins.lazydev-nvim; name = "lazydev.nvim"; }
-        { pkg = vimPlugins.noice-nvim; name = "noice.nvim"; }
-        { pkg = vimPlugins.persistence-nvim; name = "persistence.nvim"; }
-        { pkg = vimPlugins.snacks-nvim; name = "snacks.nvim"; }
-        { pkg = vimPlugins.todo-comments-nvim; name = "todo-comments.nvim"; }
-        { pkg = vimPlugins.tokyonight-nvim; name = "tokyonight.nvim"; }
-        { pkg = vimPlugins.trouble-nvim; name = "trouble.nvim"; }
-        { pkg = vimPlugins.ts-comments-nvim; name = "ts-comments.nvim"; }
-        { pkg = vimPlugins.which-key-nvim; name = "which-key.nvim"; }
-        { pkg = vimPlugins.lualine-nvim; name = "lualine.nvim"; }
-        { pkg = vimPlugins.mini-ai; name = "mini.ai"; }
-        { pkg = vimPlugins.mini-icons; name = "mini.icons"; }
-        { pkg = vimPlugins.mini-pairs; name = "mini.pairs"; }
-        { pkg = vimPlugins.nvim-lint; name = "nvim-lint"; }
-        { pkg = vimPlugins.conform-nvim; name = "conform.nvim"; }
-        { pkg = vimPlugins.nvim-ts-autotag; name = "nvim-ts-autotag"; }
+        {
+          pkg = vimPlugins.LazyVim;
+          name = "LazyVim";
+        }
+        {
+          pkg = vimPlugins.bufferline-nvim;
+          name = "bufferline.nvim";
+        }
+        {
+          pkg = vimPlugins.flash-nvim;
+          name = "flash.nvim";
+        }
+        {
+          pkg = vimPlugins.gitsigns-nvim;
+          name = "gitsigns.nvim";
+        }
+        {
+          pkg = vimPlugins.grug-far-nvim;
+          name = "grug-far.nvim";
+        }
+        {
+          pkg = vimPlugins.lazydev-nvim;
+          name = "lazydev.nvim";
+        }
+        {
+          pkg = vimPlugins.noice-nvim;
+          name = "noice.nvim";
+        }
+        {
+          pkg = vimPlugins.persistence-nvim;
+          name = "persistence.nvim";
+        }
+        {
+          pkg = vimPlugins.snacks-nvim;
+          name = "snacks.nvim";
+        }
+        {
+          pkg = vimPlugins.todo-comments-nvim;
+          name = "todo-comments.nvim";
+        }
+        {
+          pkg = vimPlugins.tokyonight-nvim;
+          name = "tokyonight.nvim";
+        }
+        {
+          pkg = vimPlugins.trouble-nvim;
+          name = "trouble.nvim";
+        }
+        {
+          pkg = vimPlugins.ts-comments-nvim;
+          name = "ts-comments.nvim";
+        }
+        {
+          pkg = vimPlugins.which-key-nvim;
+          name = "which-key.nvim";
+        }
+        {
+          pkg = vimPlugins.lualine-nvim;
+          name = "lualine.nvim";
+        }
+        {
+          pkg = vimPlugins.mini-ai;
+          name = "mini.ai";
+        }
+        {
+          pkg = vimPlugins.mini-icons;
+          name = "mini.icons";
+        }
+        {
+          pkg = vimPlugins.mini-pairs;
+          name = "mini.pairs";
+        }
+        {
+          pkg = vimPlugins.nvim-lint;
+          name = "nvim-lint";
+        }
+        {
+          pkg = vimPlugins.conform-nvim;
+          name = "conform.nvim";
+        }
+        {
+          pkg = vimPlugins.nvim-ts-autotag;
+          name = "nvim-ts-autotag";
+        }
         {
           pkg = vimPlugins.nvim-treesitter-textobjects;
           name = "nvim-treesitter-textobjects";
         }
-        { pkg = vimPlugins.nvim-lspconfig; name = "nvim-lspconfig"; }
-        { pkg = vimPlugins.plenary-nvim; name = "plenary.nvim"; }
-        { pkg = vimPlugins.friendly-snippets; name = "friendly-snippets"; }
-        { pkg = vimPlugins.blink-cmp; name = "blink.cmp"; }
-        { pkg = vimPlugins.blink-compat; name = "blink.compat"; }
+        {
+          pkg = vimPlugins.nvim-lspconfig;
+          name = "nvim-lspconfig";
+        }
+        {
+          pkg = vimPlugins.plenary-nvim;
+          name = "plenary.nvim";
+        }
+        {
+          pkg = vimPlugins.friendly-snippets;
+          name = "friendly-snippets";
+        }
+        {
+          pkg = vimPlugins.blink-cmp;
+          name = "blink.cmp";
+        }
+        {
+          pkg = vimPlugins.blink-compat;
+          name = "blink.compat";
+        }
         {
           pkg = vimPlugins.nvim-treesitter;
           name = "nvim-treesitter";
@@ -80,7 +155,9 @@
               };
             };
             filesystem = {
-              follow_current_file = { enabled = true; };
+              follow_current_file = {
+                enabled = true;
+              };
               use_libuv_file_watcher = true;
             };
             event_handlers = [
@@ -99,8 +176,14 @@
             ];
           };
         }
-        { pkg = vimPlugins.nui-nvim; name = "nui.nvim"; }
-        { pkg = vimPlugins.catppuccin-nvim; name = "catppuccin"; }
+        {
+          pkg = vimPlugins.nui-nvim;
+          name = "nui.nvim";
+        }
+        {
+          pkg = vimPlugins.catppuccin-nvim;
+          name = "catppuccin";
+        }
         {
           pkg = vimPlugins.mason-nvim;
           name = "mason.nvim";
