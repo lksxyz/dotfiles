@@ -2,7 +2,7 @@
 let
   wallpaper = pkgs: pkgs.runCommand "wallpaper" { } ''
     mkdir -p $out
-    cp ${../wallpapers/wallpaper.jpg} $out/wallpaper.jpg
+    cp ${../wallpapers/Fedora_42_default_wallpaper.png} $out/wallpaper.png
   '';
 in
 {
@@ -28,8 +28,8 @@ in
           monospace-font-name = "JetBrains Mono 12";
         };
         "org/gnome/desktop/background" = {
-          picture-uri = "file://${wallpaper pkgs}/wallpaper.jpg";
-          picture-uri-dark = "file://${wallpaper pkgs}/wallpaper.jpg";
+          picture-uri = "file://${wallpaper pkgs}/wallpaper.png";
+          picture-uri-dark = "file://${wallpaper pkgs}/wallpaper.png";
         };
         "org/gnome/desktop/default-applications/terminal" = {
           exec = "kitty";
