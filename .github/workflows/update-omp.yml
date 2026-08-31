@@ -1,0 +1,45 @@
+name: "Update omp"
+
+on:
+  schedule:
+    # Daily 04:17 UTC
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: DeterminateSystems/nix-installer-action@v15
+        with:
+          extra-conf: "experimental-features = nix-command flakes"
+      - name: Bump pinned omp version
+        id: bump
+        run: |
+          out=$(python3 scripts/update-omp.py)
+          echo "$out"
+          echo "out=$out" >> "$GITHUB_OUTPUT"
+      - name: Open PR
+        if: steps.bump.outputs.out != '' && !contains(steps.bump.outputs.out, 'up to date')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "omp-update[bot]"
+          git config user.email "omp-update[bot]@users.noreply.github.com"
+          version=$(grep -oP 'version = "\K[^"]+' pkgs/omp/default.nix)
+          branch="automation/update-omp-v${version}"
+          git switch -c "$branch"
+          git add pkgs/omp/default.nix
+          git commit -m "chore(omp): bump to ${version}"
+          git push origin "$branch" || echo "branch already exists (PR likely open)"
+          gh pr create \
+            --title "chore(omp): bump to ${version}" \
+            --body "Automated bump of the pinned oh-my-pi release to **${version}** (from [latest release](https://github.com/can1357/oh-my-pi/releases))." \
+            --base main --head "$branch" || echo "PR already exists"

@@ -16,18 +16,16 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/anza-xyz/agave/releases/download/v${version}/solana-release-x86_64-unknown-linux-gnu.tar.bz2";
-    sha256 = "sha256-j2VOdagtAFqKOXOdh/bobudSwfGBUFOdpCaU+Lt+QGc=";
+    sha256 = "sha256-c6lzRkgcqROv6DDY4ix1fR6vVBYC5d686q4i3nciKtU=";
   };
 
-  dontUnpack = true;
   dontStrip = true;
 
   installPhase = ''
     runHook preInstall
     # Keep the release layout intact: cargo-build-sbf locates
     # platform-tools-sdk/deps next to its own binary.
-    install -d $out/bin
-    cp -r $src/bin/. $out/bin/
+    tar xjf $src -C $out
     runHook postInstall
   '';
 
