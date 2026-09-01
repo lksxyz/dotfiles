@@ -236,6 +236,12 @@
             reset_packpath = false;
             rtp.reset = false;
           };
+          # Everything is store-provisioned: lazy's auto-install of "missing"
+          # plugins (install.missing, default true) would try to git-clone
+          # anything not in the store — e.g. LazyVim's optional tokyonight
+          # colorscheme spec — and its `plugin.exists` task errors every
+          # startup. There is nothing to install, so disable it.
+          settings.install.missing = false;
 
           plugins =
             # LazyVim core FIRST (required: sets up LazyVim config/global,
@@ -246,6 +252,15 @@
             ]
             ++ lazyvimCore
             ++ [
+              # LazyVim 15.x defaults its colorscheme to tokyonight, which is
+              # not provisioned here; point it at catppuccin (the theme set up
+              # by colorschemes.catppuccin below) so its startup colorscheme
+              # call resolves instead of erroring.
+              {
+                pkg = vimPlugins.LazyVim;
+                name = "LazyVim";
+                opts.colorscheme = "catppuccin";
+              }
               # Language extras (PHP / TypeScript / Nix)
               { import = "lazyvim.plugins.extras.lang.php"; }
               { import = "lazyvim.plugins.extras.lang.typescript"; }
