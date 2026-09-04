@@ -34,7 +34,7 @@
         # ethereum dev toolchain
         foundry
         # API development
-        hoppscotch
+        bruno
         # nix tooling
         # nix tooling
         cachix
