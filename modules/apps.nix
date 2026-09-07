@@ -9,7 +9,9 @@
       home.packages = with pkgs; [
         (inputs.phps.packages.${pkgs.system}.php72)
         zellij
-        jetbrains-mono
+        # Nerd Font patched JetBrains Mono (NL keeps the `JetBrains Mono`
+        # family name for existing configs). Adds the glyph set (PUA icons)
+        nerd-fonts.jetbrains-mono
         # JS runtime for agent/CLI tooling
         (pkgs.bun.overrideAttrs (old: rec {
           version = "1.4.0";

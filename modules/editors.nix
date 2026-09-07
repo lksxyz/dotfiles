@@ -292,18 +292,18 @@
         };
 
         # Read the host GNOME color-scheme (same source gnome.nix sets) and
-        # drive vim.o.background; catppuccin "auto" follows it. LazyVim's
-        # own startup picks a default colorscheme, so also re-apply once
-        # after the lazy loader settles (VeryLazy).
+        # drive vim.o.background; catppuccin "auto" follows it. Defaults to
+        # light; gsettings overrides to dark. LazyVim's own startup picks a
+        # default colorscheme, so also re-apply once after the lazy loader
+        # settles (VeryLazy).
         extraConfigLua = ''
+          vim.o.background = "light"
           local ok, handle = pcall(io.popen, "gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null")
           if ok and handle then
             local out = handle:read("*a")
             handle:close()
             if out:find("prefer%-dark", 1, true) or out:find("dark", 1, true) then
               vim.o.background = "dark"
-            else
-              vim.o.background = "light"
             end
           end
 

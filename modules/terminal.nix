@@ -21,7 +21,8 @@
           '';
         };
         settings = {
-          font_family = "JetBrains Mono:style=medium";
+          # Nerd Font patched JetBrains Mono (apps.nix). Family exact name:
+          font_family = "JetBrainsMonoNL Nerd Font Mono:style=Medium";
           font_size = 13;
           window_padding_width = 12;
           background_opacity = 0.99;

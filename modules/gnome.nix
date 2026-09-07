@@ -13,6 +13,7 @@ in
     {
       home.packages = with pkgs; [
         gnomeExtensions.blur-my-shell
+        (catppuccin-gtk.override { variant = "latte"; })
       ];
 
       programs.gnome-shell = {
@@ -24,8 +25,8 @@ in
 
       dconf.settings = {
         "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-          gtk-theme = "catppuccin-mocha";
+          color-scheme = "prefer-light";
+          gtk-theme = "catppuccin-latte-blue-standard";
           icon-theme = "Papirus";
           monospace-font-name = "JetBrains Mono 12";
         };
