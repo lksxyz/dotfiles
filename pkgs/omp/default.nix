@@ -6,11 +6,11 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "omp";
-  version = "18.1.14";
+  version = "18.8.4";
 
   src = fetchurl {
     url = "https://github.com/can1357/oh-my-pi/releases/download/v${version}/omp-linux-x64";
-    sha256 = "sha256-J91my2osOf/1Hh/m20Dx83b+5KPQRFfyNu2qXQKQ5NI=";
+    sha256 = "sha256-stuiI/va4nrL2Zvi8+droQuq4XaPnFfO4wxEDzCN6k4=";
   };
 
   dontUnpack = true;
